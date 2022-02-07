@@ -11,6 +11,8 @@ global my_asm_program
 ;; declared data blocks
 segment .data
 prompt_name: db "It's me, a string.", 0 ; <--- null terminator
+strf_lf: db "%d", 0
+pi: dq 3.14
 
 ;; declared uninitialized data blocks
 segment .bss
@@ -35,7 +37,9 @@ my_asm_program:
     push rbx
     pushf
 
-    mov rax, 'd'
+    mov rdi, strf_lf
+    mov rsi, [pi]
+    call printf
 
     popf
     pop rbx
