@@ -15,6 +15,7 @@ str_prompt: db `--- Triangle Calculations ---\nPlease enter two sides and an ang
 str_nextline: db `\n`, 0
 strf_user_values: db `\nInputted sides %lf and %lf with angle %lf°\n`, 0
 strf_answers: db `\nPerimeter: %lf\nArea: %lf\n`, 0
+strf_three_doubles: db "%lf %lf %lf", 0
 
 ;; declare uninitialized data blocks
 segment .bss
