@@ -46,7 +46,8 @@ my_asm_program:
     call printf
 
     ;; --- GET DOUBLE VALUES FROM USER ---
-    push qword 0 ; rsp lineup for C function call quirk
+    push qword 0 ; rsp lineup for scanf call quirk
+                 ; --- WILL SEG-FAULT WITHOUT THIS!!!! ---
     ; make room for 3 doubles
     push qword 0
     push qword 0
