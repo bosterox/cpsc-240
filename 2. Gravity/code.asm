@@ -2,19 +2,20 @@ extern printf
 extern scanf
 
 ;; constants
-INPUT_LEN equ 64
-MATH_EXPRESSION equ 24 * INPUT_LEN
+INPUT_LEN equ 100
 
 ;; symbol to expose to C
 global my_asm_program
 
 ;; declare initialized data blocks
 segment .data
-prompt_name: db "It's me, a string.", 0
+gravity: dq 0x411cf5c3 ; Earth's grav. acceleration constant: 9.81 m/s^2
+str_intro: db `--- Drop Time Calculator ---\nEnter the height (in meters) from which you are dropping something: `, 0
+str_result: db `From %lf meters up, it will take %lf seconds to hit the ground.\n`, 0
 
 ;; declare uninitialized data blocks
 segment .bss
-user_name: resb INPUT_LEN ;; char user_name[INPUT_LEN]
+str_height: resb INPUT_LEN
 
 segment .text
 my_asm_program:
@@ -35,7 +36,9 @@ my_asm_program:
     push rbx
     pushf
 
-    mov rax, 'd' ;; example command. erase and do whatever
+    ;; --- INTRO TEXT ---
+    mov rdi, str_intro
+    call printf
 
     popf
     pop rbx

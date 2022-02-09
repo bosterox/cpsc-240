@@ -8,7 +8,7 @@ extern sin
 ;; main code to expose to C
 global my_asm_program
 
-;; declared initialized data blocks
+;; declare initialized data blocks
 segment .data
 pi: dq 0x400921FB54442D18
 str_prompt: db `--- Triangle Calculations ---\nPlease enter two sides and an angle (deg) all on the same line, each separated by a space.\n`, 0
@@ -47,7 +47,7 @@ my_asm_program:
 
     ;; --- GET DOUBLE VALUES FROM USER ---
     push qword 0 ; rsp lineup for scanf call quirk
-                 ; --- WILL SEG-FAULT WITHOUT THIS!!!! ---
+                 ; --> WILL SEG-FAULT WITHOUT THIS!! <--
     ; make room for 3 doubles
     push qword 0
     push qword 0
@@ -67,7 +67,7 @@ my_asm_program:
     pop rax
     movsd xmm13, [rsp] ; angle (deg)
     pop rax
-    pop rax ; C function quirk
+    pop rax ; undo rsp line up
 
     ;; --- PRINT USER'S INPUTED VALUES ---
     mov rdi, strf_user_values
@@ -148,7 +148,7 @@ my_asm_program:
     mov rax, 2
     call printf
 
-    mov rax, 0 ; return code 0
+    movsd xmm0, [area]
 
     popf
     pop rbx

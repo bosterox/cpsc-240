@@ -2,6 +2,7 @@
 
 #Author: Daniel C
 #Title: BASH compile for C++
+#Modifed by Alex T
 
 rm *.o
 rm *.out

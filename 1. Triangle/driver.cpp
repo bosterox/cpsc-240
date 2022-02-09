@@ -1,9 +1,10 @@
 #include <cstdio>
 
-extern "C" int my_asm_program();
+extern "C" double my_asm_program();
 
 int main()
 {
-    int ret = my_asm_program();
-    return ret;
+    double ret = my_asm_program();
+    printf("\nASM returned double value: %lf\n", ret);
+    return 0;
 }
