@@ -61,6 +61,7 @@ roots:
     cvtsi2sd xmm10, rax
     mulsd xmm11, xmm10 ;; xmm11 = -4ac
     addsd xmm12, xmm11 ;; xmm12 = radicand
+break:
 
     ; CASE 1: radicand < 0? no roots
     mov rax, 0

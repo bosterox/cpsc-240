@@ -1,3 +1,7 @@
+// Name: Alex Tran (887519064)
+// Section: CPSC 240-07
+// E-mail: altran@csu.fullerton.edu
+
 #include <cstdio>
 
 // change type as needed for assignment
