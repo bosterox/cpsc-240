@@ -98,7 +98,7 @@ my_asm_program:
     call scanf
 
     ;; -- VALIDATE INPUT --
-    ; if valid value entered, rax = 1. else, rax = 0.)
+    ; if valid value entered, rax = 1. else, rax = 0)
     mov rdi, 0
     cmp rdi, rax
     je error_input
@@ -107,7 +107,7 @@ my_asm_program:
     movsd xmm15, [rsp] ; xmm15 = user input
     mov rax, 0
     cvtsi2sd xmm14, rax ; xmm14 = 0
-    cmpsd xmm14, xmm15, 1 ; xmm14 = xmm15 > 0 ? FFFFFF : 0
+    cmpsd xmm14, xmm15, 1 ; comparison type 1: xmm14 = xmm15 > 0 ? FFFFFF : 0
     mov rax, 0
     cvtsd2si rdi, xmm14
     cmp rdi, rax
@@ -123,7 +123,7 @@ my_asm_program:
     sqrtsd xmm15, xmm15 ; xmm15 = final result
     
     ; printing
-    mov rax, 2 ; 1 xmm-reg
+    mov rax, 2 ; xmm-regs
     movsd xmm0, [rsp]
     movsd xmm1, xmm15
     mov rdi, str_result
